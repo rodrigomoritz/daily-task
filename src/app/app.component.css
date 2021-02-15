@@ -1,0 +1,15 @@
+.container {
+    margin-top: 30px;
+}
+
+.add-task {
+    margin-bottom: 30px;
+}
+
+.list-task {
+    margin-bottom: 50px;
+}
+
+.btn-add-task {
+    margin-right: 10px;
+}

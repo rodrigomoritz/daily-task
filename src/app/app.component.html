@@ -1,0 +1,51 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Daily task management</li>
+  </ol>
+</nav>
+<div class="container">
+  <div class="card list-task">
+    <h5 class="card-header">
+      Task List</h5>
+    <div class="card-body">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Title</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of tasks">
+              <td>{{task.id}}</td>
+              <td>{{task.title}}</td>
+              <td>
+                <button type="button" class="btn btn-warning btn-sm" (click)="editTask(task)">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteTask(task)">Deletar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+
+  <div class="card add-task">
+      <h5 class="card-header">Add / Update task</h5>
+      <div class="card-body">
+          <form id="add-form" (ngSubmit)="f.form.valid && saveTask(f)" #f="ngForm" novalidate>
+            <div class="form-group">
+                <label for="model">Task</label>
+                <input type="text" [(ngModel)]="task.title" id="model" name="model" #model="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" placeholder="report a task
+                ">
+                <div *ngIf="f.submitted && model.invalid" class="invalid-feedback">
+                    <div *ngIf="model.errors.required">
+                      Title is required</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-add-task">Salvar</button>
+            <button type="reset" class="btn btn-secondary btn-add-task" (click)="cleanForm(f)">Cancelar</button>
+          </form>
+      </div>
+    </div>
+</div>
